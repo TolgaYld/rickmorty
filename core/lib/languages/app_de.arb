@@ -1,0 +1,15 @@
+{
+    "language": "Deutsch",
+    "male": "Männlich",
+    "female": "Weiblich",
+    "genderless": "Kein Geschlecht",
+    "unknown": "Unbekannt",
+    "statusAlive": "Lebendig",
+    "statusDead": "Tot",
+    "statusUnknown": "Unbekannt",
+    "speciesHuman": "Mensch",
+    "speciesAlien": "Alien",
+    "speciesHumanoid": "Menschoid",
+    "speciesRobot": "Robot",
+    "speciesOther": "Andere"
+}

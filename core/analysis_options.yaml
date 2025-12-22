@@ -1,0 +1,26 @@
+include: package:flutter_lints/flutter.yaml
+
+formatter:
+  trailing_commas: preserve
+
+linter:
+  rules:
+    public_member_api_docs: false
+    require_trailing_commas: true
+    prefer_final_locals: true
+    sort_constructors_first: true
+    prefer_final_in_for_each: true
+    use_super_parameters: true
+    implicit_call_tearoffs: true
+    unnecessary_lambdas: true
+
+analyzer:
+  exclude:
+    - "**/*.freezed.dart"
+    - "**/*.pb.dart"
+    - "**/*.pbjson.dart"
+    - "**/*.pbenum.dart"
+    - "**/*.g.dart"
+    - core/lib/src/localization/*
+  errors:
+    invalid_annotation_target: ignore
