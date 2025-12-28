@@ -46,4 +46,51 @@ class L10nEn extends L10n {
 
   @override
   String get speciesOther => 'Other';
+
+  @override
+  String get character => 'Character';
+
+  @override
+  String get settings => 'Settings';
+
+  @override
+  String get favorites => 'Favorites';
+
+  @override
+  String get noFavorites => 'No Favorites';
+
+  @override
+  String get gender => 'Gender';
+
+  @override
+  String get species => 'Species';
+
+  @override
+  String get type => 'Type';
+
+  @override
+  String get origin => 'Origin';
+
+  @override
+  String get location => 'Location';
+
+  @override
+  String get created => 'Created';
+
+  @override
+  String get episode => 'Episode';
+
+  @override
+  String get themeModeSystem => 'System';
+
+  @override
+  String get themeModeLight => 'Light';
+
+  @override
+  String get themeModeDark => 'Dark';
+
+  @override
+  String episodesValue(int count) {
+    return '$count Episodes';
+  }
 }

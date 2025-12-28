@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 part 'species.enum.mapper.dart';
 
-@MappableEnum(defaultValue: Species.other)
+@MappableEnum(defaultValue: Species.other, caseStyle: CaseStyle.pascalCase)
 enum Species {
   human(icon: Icons.person),
   alien(icon: Icons.reddit),

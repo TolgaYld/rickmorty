@@ -26,15 +26,15 @@ class SpeciesMapper extends EnumMapper<Species> {
   @override
   Species decode(dynamic value) {
     switch (value) {
-      case r'human':
+      case r'Human':
         return Species.human;
-      case r'alien':
+      case r'Alien':
         return Species.alien;
-      case r'humanoid':
+      case r'Humanoid':
         return Species.humanoid;
-      case r'robot':
+      case r'Robot':
         return Species.robot;
-      case r'other':
+      case r'Other':
         return Species.other;
       default:
         return Species.values[4];
@@ -45,15 +45,15 @@ class SpeciesMapper extends EnumMapper<Species> {
   dynamic encode(Species self) {
     switch (self) {
       case Species.human:
-        return r'human';
+        return r'Human';
       case Species.alien:
-        return r'alien';
+        return r'Alien';
       case Species.humanoid:
-        return r'humanoid';
+        return r'Humanoid';
       case Species.robot:
-        return r'robot';
+        return r'Robot';
       case Species.other:
-        return r'other';
+        return r'Other';
     }
   }
 }

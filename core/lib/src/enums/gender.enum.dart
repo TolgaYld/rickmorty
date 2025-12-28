@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 part 'gender.enum.mapper.dart';
 
-@MappableEnum()
+@MappableEnum(caseStyle: CaseStyle.pascalCase)
 enum Gender {
   male(
     color: Colors.blue,
@@ -18,6 +18,7 @@ enum Gender {
     color: Colors.grey,
     icon: Icons.transgender,
   ),
+  @MappableValue('unknown')
   unknown(
     color: Colors.yellow,
     icon: Icons.question_mark,

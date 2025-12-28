@@ -1,10 +1,11 @@
+import 'package:core/src/interfaces/id_holder.dart';
 import 'package:core/src/models/hooks/air_date.hook.dart';
 import 'package:dart_mappable/dart_mappable.dart';
 
 part 'episode.model.mapper.dart';
 
 @MappableClass()
-class Episode with EpisodeMappable {
+class Episode with EpisodeMappable implements IdHolder {
   const Episode({
     required this.id,
     required this.name,

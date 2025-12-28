@@ -26,11 +26,11 @@ class VitalityMapper extends EnumMapper<Vitality> {
   @override
   Vitality decode(dynamic value) {
     switch (value) {
-      case r'alive':
+      case r'Alive':
         return Vitality.alive;
-      case r'dead':
+      case r'Dead':
         return Vitality.dead;
-      case r'unknown':
+      case 'unknown':
         return Vitality.unknown;
       default:
         throw MapperException.unknownEnumValue(value);
@@ -41,19 +41,19 @@ class VitalityMapper extends EnumMapper<Vitality> {
   dynamic encode(Vitality self) {
     switch (self) {
       case Vitality.alive:
-        return r'alive';
+        return r'Alive';
       case Vitality.dead:
-        return r'dead';
+        return r'Dead';
       case Vitality.unknown:
-        return r'unknown';
+        return 'unknown';
     }
   }
 }
 
 extension VitalityMapperExtension on Vitality {
-  String toValue() {
+  dynamic toValue() {
     VitalityMapper.ensureInitialized();
-    return MapperContainer.globals.toValue<Vitality>(this) as String;
+    return MapperContainer.globals.toValue<Vitality>(this);
   }
 }
 

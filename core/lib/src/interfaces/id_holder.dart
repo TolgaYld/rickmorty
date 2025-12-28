@@ -1,3 +1,3 @@
 abstract interface class IdHolder {
-  String get id;
+  int get id;
 }

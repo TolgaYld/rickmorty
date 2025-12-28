@@ -1,9 +1,10 @@
+import 'package:core/src/interfaces/id_holder.dart';
 import 'package:dart_mappable/dart_mappable.dart';
 
 part 'location.model.mapper.dart';
 
 @MappableClass()
-class Location with LocationMappable {
+class Location with LocationMappable implements IdHolder {
   const Location({
     required this.id,
     required this.name,

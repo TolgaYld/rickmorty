@@ -11,5 +11,27 @@
     "speciesAlien": "Alien",
     "speciesHumanoid": "Menschoid",
     "speciesRobot": "Robot",
-    "speciesOther": "Andere"
+    "speciesOther": "Andere",
+    "character": "Charakter",
+    "settings": "Einstellungen",
+    "favorites": "Favoriten",
+    "noFavorites": "Keine Favoriten",
+    "themeModeSystem": "System",
+    "themeModeLight": "Hell",
+    "themeModeDark": "Dunkel",
+    "gender": "Geschlecht",
+    "species": "Rasse",
+    "type": "Typ",
+    "origin": "Herkunft",
+    "location": "Aktuelle Position",
+    "created": "Erstellt",
+    "episode": "Episoden",
+    "episodesValue": "{count} Episoden",
+    "@episodesValue": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    }
 }

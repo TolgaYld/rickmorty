@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 part 'vitality.enum.mapper.dart';
 
-@MappableEnum(caseStyle: CaseStyle.camelCase)
+@MappableEnum(caseStyle: CaseStyle.pascalCase)
 enum Vitality {
   alive(
     color: Colors.green,
@@ -14,6 +14,7 @@ enum Vitality {
     color: Colors.red,
     icon: Icons.error,
   ),
+  @MappableValue('unknown')
   unknown(
     color: Colors.grey,
     icon: Icons.help_outline,

@@ -11,5 +11,27 @@
     "speciesAlien": "Alien",
     "speciesHumanoid": "Humanoid",
     "speciesRobot": "Robot",
-    "speciesOther": "Other"
+    "speciesOther": "Other",
+    "character": "Character",
+    "settings": "Settings",
+    "favorites": "Favorites",
+    "noFavorites": "No Favorites",
+    "gender": "Gender",
+    "species": "Species",
+    "type": "Type",
+    "origin": "Origin",
+    "location": "Location",
+    "created": "Created",
+    "episode": "Episode",
+    "themeModeSystem": "System",
+    "themeModeLight": "Light",
+    "themeModeDark": "Dark",
+    "episodesValue": "{count} Episodes",
+    "@episodesValue": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    }
 }

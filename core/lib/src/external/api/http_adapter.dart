@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 class HttpAdapter {
   final Dio _dio = Dio(
     BaseOptions(
-      baseUrl: kBaseUrl,
+      baseUrl: ApiConstants.baseUrl,
       connectTimeout: const Duration(seconds: 5),
     ),
   );

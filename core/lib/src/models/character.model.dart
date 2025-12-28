@@ -1,6 +1,7 @@
 import 'package:core/src/enums/gender.enum.dart';
 import 'package:core/src/enums/species.enum.dart';
 import 'package:core/src/enums/vitality.enum.dart';
+import 'package:core/src/interfaces/id_holder.dart';
 import 'package:dart_mappable/dart_mappable.dart';
 
 part 'character.model.mapper.dart';
@@ -13,7 +14,7 @@ class CharacterLocation with CharacterLocationMappable {
 }
 
 @MappableClass()
-class Character with CharacterMappable {
+class Character with CharacterMappable implements IdHolder {
   const Character({
     required this.id,
     required this.name,

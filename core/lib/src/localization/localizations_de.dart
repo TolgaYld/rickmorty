@@ -46,4 +46,51 @@ class L10nDe extends L10n {
 
   @override
   String get speciesOther => 'Andere';
+
+  @override
+  String get character => 'Charakter';
+
+  @override
+  String get settings => 'Einstellungen';
+
+  @override
+  String get favorites => 'Favoriten';
+
+  @override
+  String get noFavorites => 'Keine Favoriten';
+
+  @override
+  String get gender => 'Geschlecht';
+
+  @override
+  String get species => 'Rasse';
+
+  @override
+  String get type => 'Typ';
+
+  @override
+  String get origin => 'Herkunft';
+
+  @override
+  String get location => 'Aktuelle Position';
+
+  @override
+  String get created => 'Erstellt';
+
+  @override
+  String get episode => 'Episoden';
+
+  @override
+  String get themeModeSystem => 'System';
+
+  @override
+  String get themeModeLight => 'Hell';
+
+  @override
+  String get themeModeDark => 'Dunkel';
+
+  @override
+  String episodesValue(int count) {
+    return '$count Episoden';
+  }
 }

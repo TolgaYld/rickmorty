@@ -1,2 +1,6 @@
-const kCachedThemeModeKey = 'CACHED_THEME_MODE';
-const kCachedUseSystemThemeKey = 'CHACHED_USE_SYSTEM_THEME';
+class ThemeModeKeys {
+  const ThemeModeKeys._();
+
+  static const String cachedThemeMode = 'CACHED_THEME_MODE';
+  static const String cachedUseSystemTheme = 'CHACHED_USE_SYSTEM_THEME';
+}
