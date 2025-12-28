@@ -10,6 +10,7 @@ import 'package:rickmorty_riverpod/presentation/settings/settings.page.dart';
 
 enum RoutePath {
   character(path: '/character'),
+  characterDetail(path: '/character/:id'),
   favorites(path: '/favorites'),
   settings(path: '/settings')
   ;
@@ -46,8 +47,8 @@ class RouterNotifier extends ChangeNotifier {
               builder: (context, state) => const CharacterPage(),
               routes: [
                 GoRoute(
-                  path: ':id',
-                  name: 'character_detail',
+                  path: RoutePath.characterDetail.path,
+                  name: RoutePath.characterDetail.name,
                   builder: (context, state) {
                     final id = state.pathParameters['id'] ?? '0';
                     return CharacterDetailPage(

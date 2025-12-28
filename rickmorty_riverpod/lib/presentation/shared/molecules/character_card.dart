@@ -5,6 +5,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rickmorty_riverpod/core/hooks/use_l10n.hook.dart';
 import 'package:rickmorty_riverpod/core/hooks/use_theme.hook.dart';
+import 'package:rickmorty_riverpod/core/routing/router.dart';
 
 class CharacterCard extends HookWidget {
   const CharacterCard({
@@ -28,7 +29,7 @@ class CharacterCard extends HookWidget {
       clipBehavior: Clip.antiAlias,
       child: InkWell(
         onTap: () => context.goNamed(
-          'character_detail',
+          RoutePath.characterDetail.name,
           pathParameters: {'id': character.id.toString()},
         ),
         child: Stack(
