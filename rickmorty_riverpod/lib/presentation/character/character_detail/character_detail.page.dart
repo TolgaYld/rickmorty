@@ -175,14 +175,14 @@ class CharacterDetailPage extends HookConsumerWidget {
   }
 }
 
-class _StatusChip extends StatelessWidget {
+class _StatusChip extends HookConsumerWidget {
   const _StatusChip({required this.label, required this.color});
 
   final String label;
   final Color color;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(

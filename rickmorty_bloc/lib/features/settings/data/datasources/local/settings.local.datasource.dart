@@ -1,15 +1,13 @@
 import 'package:core/rickmorty_core.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:rickmorty_riverpod/core/storage/local_storage_adapter.dart';
-import 'package:rickmorty_riverpod/services/datasources/theme_mode/local/theme_mode.datasource.dart';
 
-final themeModeDatasourceProvider = Provider.autoDispose<ThemeModeDatasource>(
-  (ref) => ThemeModeDatasourceImpl(ref.watch(localStorageAdapterProvider)),
-);
+abstract interface class SettingsDatasource {
+  Future<ThemeMode> getThemeMode();
+  Future<void> saveThemeMode(ThemeMode mode);
+}
 
-class ThemeModeDatasourceImpl implements ThemeModeDatasource {
-  ThemeModeDatasourceImpl(this._storage);
+class SettingsDatasourceImpl implements SettingsDatasource {
+  SettingsDatasourceImpl(this._storage);
 
   final LocalStorageAdapter _storage;
 

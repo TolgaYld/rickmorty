@@ -12,7 +12,7 @@ class FavoritesNotifier extends Notifier<FavoritesState> {
   @override
   FavoritesState build() {
     Future.microtask(loadFavorites);
-    return const FavoritesStateInitial();
+    return state;
   }
 
   Future<void> loadFavorites() async {
