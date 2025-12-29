@@ -34,7 +34,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
     return BlocConsumer<FavoritesBloc, FavoritesState>(
       listener: (context, state) {
         if (state is FavoritesStateLoaded) {
-          if (!_initialized) {
+          if (_initialized == false) {
             setState(() {
               _displayedItems.clear();
               _displayedItems.addAll(state.favorites);
@@ -43,7 +43,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
           } else {
             final currentDisplayIds = _displayedItems.map((e) => e.id).toSet();
             final newItems = state.favorites.where(
-              (e) => !currentDisplayIds.contains(e.id),
+              (e) => currentDisplayIds.contains(e.id) == false,
             );
 
             if (newItems.isNotEmpty) {
@@ -88,7 +88,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
                         return _AnimatedFavoriteItem(
                           key: ValueKey(item.id),
                           character: item,
-                          shouldAnimateOut: !isStillFavorite,
+                          shouldAnimateOut: isStillFavorite == false,
                           onRemoveComplete: () {
                             setState(() {
                               _displayedItems.removeWhere(
@@ -146,9 +146,9 @@ class _AnimatedFavoriteItemState extends State<_AnimatedFavoriteItem>
   @override
   void didUpdateWidget(covariant _AnimatedFavoriteItem oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.shouldAnimateOut && !oldWidget.shouldAnimateOut) {
+    if (widget.shouldAnimateOut && oldWidget.shouldAnimateOut == false) {
       _controller.reverse().then((_) => widget.onRemoveComplete());
-    } else if (!widget.shouldAnimateOut && oldWidget.shouldAnimateOut) {
+    } else if (widget.shouldAnimateOut == false && oldWidget.shouldAnimateOut) {
       if (_controller.status != AnimationStatus.completed) {
         _controller.forward();
       }

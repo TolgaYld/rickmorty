@@ -39,7 +39,7 @@ class _CharacterPageState extends State<CharacterPage>
   }
 
   bool get _isBottom {
-    if (!_scrollController.hasClients) return false;
+    if (_scrollController.hasClients == false) return false;
     final maxScroll = _scrollController.position.maxScrollExtent;
     final currentScroll = _scrollController.offset;
     return currentScroll >= (maxScroll * 0.9);
