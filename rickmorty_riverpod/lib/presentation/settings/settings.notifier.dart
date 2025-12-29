@@ -10,11 +10,10 @@ class SettingsNotifier extends Notifier<SettingsState> {
   @override
   SettingsState build() {
     Future.microtask(loadThemeMode);
-    return state;
+    return const SettingsStateLoading();
   }
 
   Future<void> loadThemeMode() async {
-    state = const SettingsStateLoading();
     final result = await ref.read(settingsRepositoryProvider).getThemeMode();
     state = result.fold(
       (failure) => SettingsStateError(message: failure.message),

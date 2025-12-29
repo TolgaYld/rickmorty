@@ -9,8 +9,8 @@ final characterNotifierProvider =
 class CharacterNotifier extends Notifier<CharacterState> {
   @override
   CharacterState build() {
-    loadInitialCharacters();
-    return state;
+    Future.microtask(loadInitialCharacters);
+    return const CharacterStateLoading();
   }
 
   Future<void> loadInitialCharacters() async {
