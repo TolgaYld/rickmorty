@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/rickmorty_core.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rickmorty_bloc/core/routing/router.dart';
 
 class CharacterCard extends StatelessWidget {
   const CharacterCard({
@@ -24,7 +25,7 @@ class CharacterCard extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       child: InkWell(
         onTap: () => context.goNamed(
-          'character_detail',
+          RoutePath.characterDetail.name,
           pathParameters: {'id': character.id.toString()},
         ),
         child: Stack(
