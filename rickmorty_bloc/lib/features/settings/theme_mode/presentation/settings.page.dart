@@ -1,8 +1,8 @@
 import 'package:core/rickmorty_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rickmorty_bloc/features/settings/application/cubit/settings_cubit.dart';
-import 'package:rickmorty_bloc/features/settings/application/cubit/settings_state.dart';
+import 'package:rickmorty_bloc/features/settings/theme_mode/application/cubit/theme_mode_cubit.dart';
+import 'package:rickmorty_bloc/features/settings/theme_mode/application/cubit/theme_mode_state.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -36,15 +36,15 @@ class _SettingsPageState extends State<SettingsPage>
     final theme = Theme.of(context);
     final l10n = L10n.of(context);
 
-    return BlocConsumer<SettingsCubit, SettingsState>(
+    return BlocConsumer<ThemeModeCubit, ThemeModeState>(
       listener: (context, state) {
-        if (state is SettingsStateLoaded) {
+        if (state is ThemeModeStateLoaded) {
           _animationController.forward(from: 0.0);
         }
       },
       builder: (context, state) {
         final currentThemeMode = switch (state) {
-          SettingsStateLoaded(themeMode: final mode) => mode,
+          ThemeModeStateLoaded(themeMode: final mode) => mode,
           _ => ThemeMode.system,
         };
 
@@ -53,13 +53,13 @@ class _SettingsPageState extends State<SettingsPage>
             title: Text(l10n.settings),
           ),
           body: switch (state) {
-            SettingsStateInitial() || SettingsStateLoading() => const Center(
+            ThemeModeStateInitial() || ThemeModeStateLoading() => const Center(
               child: CircularProgressIndicator(),
             ),
-            SettingsStateError(message: final msg) => Center(
+            ThemeModeStateError(message: final msg) => Center(
               child: Text('Error: $msg'),
             ),
-            SettingsStateLoaded() => ListView(
+            ThemeModeStateLoaded() => ListView(
               children: [
                 VSpace.m(),
                 Center(
@@ -88,7 +88,7 @@ class _SettingsPageState extends State<SettingsPage>
                   groupValue: currentThemeMode,
                   onChanged: (val) {
                     if (val != null) {
-                      context.read<SettingsCubit>().setTheme(val);
+                      context.read<ThemeModeCubit>().setTheme(val);
                     }
                   },
                   child: Column(

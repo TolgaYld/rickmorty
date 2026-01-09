@@ -4,8 +4,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rickmorty_riverpod/core/hooks/use_l10n.hook.dart';
 import 'package:rickmorty_riverpod/core/hooks/use_theme.hook.dart';
-import 'package:rickmorty_riverpod/presentation/settings/settings.notifier.dart';
-import 'package:rickmorty_riverpod/presentation/settings/state/settings.state.dart';
+import 'package:rickmorty_riverpod/presentation/settings/theme_mode/theme_mode.notifier.dart';
+import 'package:rickmorty_riverpod/presentation/settings/theme_mode/state/theme_mode.state.dart';
 
 class SettingsPage extends HookConsumerWidget {
   const SettingsPage({super.key});
@@ -14,11 +14,11 @@ class SettingsPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = useTheme();
     final l10n = useL10n();
-    final state = ref.watch(settingsNotifierProvider);
-    final notifier = ref.read(settingsNotifierProvider.notifier);
+    final state = ref.watch(themeModeNotifierProvider);
+    final notifier = ref.read(themeModeNotifierProvider.notifier);
 
     final currentThemeMode = switch (state) {
-      SettingsStateLoaded(themeMode: final mode) => mode,
+      ThemeModeStateLoaded(themeMode: final mode) => mode,
       _ => ThemeMode.system,
     };
 
@@ -36,13 +36,13 @@ class SettingsPage extends HookConsumerWidget {
         title: Text(l10n.settings),
       ),
       body: switch (state) {
-        SettingsStateInitial() || SettingsStateLoading() => const Center(
+        ThemeModeStateInitial() || ThemeModeStateLoading() => const Center(
           child: CircularProgressIndicator(),
         ),
-        SettingsStateError(message: final msg) => Center(
+        ThemeModeStateError(message: final msg) => Center(
           child: Text('Error: $msg'),
         ),
-        SettingsStateLoaded() => ListView(
+        ThemeModeStateLoaded() => ListView(
           children: [
             VSpace.m(),
             Center(

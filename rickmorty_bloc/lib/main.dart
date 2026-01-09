@@ -5,8 +5,8 @@ import 'package:rickmorty_bloc/core/di/service_locator.dart';
 import 'package:rickmorty_bloc/core/routing/router.dart';
 import 'package:rickmorty_bloc/features/character/application/bloc/character_bloc.dart';
 import 'package:rickmorty_bloc/features/favorites/application/bloc/favorites_bloc.dart';
-import 'package:rickmorty_bloc/features/settings/application/cubit/settings_cubit.dart';
-import 'package:rickmorty_bloc/features/settings/application/cubit/settings_state.dart';
+import 'package:rickmorty_bloc/features/settings/theme_mode/application/cubit/theme_mode_cubit.dart';
+import 'package:rickmorty_bloc/features/settings/theme_mode/application/cubit/theme_mode_state.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,13 +28,13 @@ class MyApp extends StatelessWidget {
           create: (_) => sl<FavoritesBloc>()..add(FavoritesEventLoad()),
         ),
         BlocProvider(
-          create: (_) => sl<SettingsCubit>(),
+          create: (_) => sl<ThemeModeCubit>(),
         ),
       ],
-      child: BlocBuilder<SettingsCubit, SettingsState>(
+      child: BlocBuilder<ThemeModeCubit, ThemeModeState>(
         builder: (context, state) {
           final themeMode = switch (state) {
-            SettingsStateLoaded(themeMode: final mode) => mode,
+            ThemeModeStateLoaded(themeMode: final mode) => mode,
             _ => ThemeMode.system,
           };
 

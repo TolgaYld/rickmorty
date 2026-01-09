@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:rickmorty_riverpod/core/routing/router.dart';
-import 'package:rickmorty_riverpod/presentation/settings/settings.notifier.dart';
-import 'package:rickmorty_riverpod/presentation/settings/state/settings.state.dart';
+import 'package:rickmorty_riverpod/presentation/settings/theme_mode/theme_mode.notifier.dart';
+import 'package:rickmorty_riverpod/presentation/settings/theme_mode/state/theme_mode.state.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,9 +16,9 @@ class MyApp extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final themeState = ref.watch(settingsNotifierProvider);
+    final themeState = ref.watch(themeModeNotifierProvider);
     final themeMode = switch (themeState) {
-      SettingsStateLoaded(:final themeMode) => themeMode,
+      ThemeModeStateLoaded(:final themeMode) => themeMode,
       _ => ThemeMode.system,
     };
     final router = ref.watch(navigationManagerProvider);

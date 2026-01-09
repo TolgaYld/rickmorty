@@ -5,7 +5,7 @@ import 'package:rickmorty_bloc/core/presentation/pages/home.page.dart';
 import 'package:rickmorty_bloc/features/character/presentation/character.page.dart';
 import 'package:rickmorty_bloc/features/character/presentation/character_detail/character_detail.page.dart';
 import 'package:rickmorty_bloc/features/favorites/presentation/favorites.page.dart';
-import 'package:rickmorty_bloc/features/settings/presentation/settings.page.dart';
+import 'package:rickmorty_bloc/features/settings/theme_mode/presentation/settings.page.dart';
 
 enum RoutePath {
   character(path: '/character'),

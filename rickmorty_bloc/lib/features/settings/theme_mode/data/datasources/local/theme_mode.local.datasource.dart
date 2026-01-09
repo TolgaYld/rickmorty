@@ -1,13 +1,13 @@
 import 'package:core/rickmorty_core.dart';
 import 'package:flutter/material.dart';
 
-abstract interface class SettingsDatasource {
+abstract interface class ThemeModeLocalDatasource {
   Future<ThemeMode> getThemeMode();
   Future<void> saveThemeMode(ThemeMode mode);
 }
 
-class SettingsDatasourceImpl implements SettingsDatasource {
-  SettingsDatasourceImpl(this._storage);
+class ThemeModeLocalDatasourceImpl implements ThemeModeLocalDatasource {
+  ThemeModeLocalDatasourceImpl(this._storage);
 
   final LocalStorageAdapter _storage;
 

@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Bloc",
+            "request": "launch",
+            "type": "dart",
+            "program": "${workspaceFolder}/rickmorty_bloc/lib/main.dart"
+        },
+        {
+            "name": "Riverpod",
+            "request": "launch",
+            "type": "dart",
+            "program": "${workspaceFolder}/rickmorty_riverpod/lib/main.dart"
+        }
+    ]
+}

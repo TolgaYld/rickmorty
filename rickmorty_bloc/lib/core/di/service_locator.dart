@@ -8,10 +8,10 @@ import 'package:rickmorty_bloc/features/favorites/application/bloc/favorites_blo
 import 'package:rickmorty_bloc/features/favorites/data/datasources/local/favorites.local.datasource.dart';
 import 'package:rickmorty_bloc/features/favorites/data/repository/favorites.impl.repo.dart';
 import 'package:rickmorty_bloc/features/favorites/domain/repository/favorites.repo.dart';
-import 'package:rickmorty_bloc/features/settings/application/cubit/settings_cubit.dart';
-import 'package:rickmorty_bloc/features/settings/data/datasources/local/settings.local.datasource.dart';
-import 'package:rickmorty_bloc/features/settings/data/repository/settings.impl.repo.dart';
-import 'package:rickmorty_bloc/features/settings/domain/repository/settings.repo.dart';
+import 'package:rickmorty_bloc/features/settings/theme_mode/application/cubit/theme_mode_cubit.dart';
+import 'package:rickmorty_bloc/features/settings/theme_mode/data/datasources/local/theme_mode.local.datasource.dart';
+import 'package:rickmorty_bloc/features/settings/theme_mode/data/repository/theme_mode.impl.repo.dart';
+import 'package:rickmorty_bloc/features/settings/theme_mode/domain/repository/theme_mode.repo.dart';
 
 final sl = GetIt.instance;
 
@@ -27,8 +27,8 @@ Future<void> initServiceLocator() async {
   sl.registerLazySingleton<FavoritesDatasource>(
     () => FavoritesDatasourceImpl(sl()),
   );
-  sl.registerLazySingleton<SettingsDatasource>(
-    () => SettingsDatasourceImpl(sl()),
+  sl.registerLazySingleton<ThemeModeLocalDatasource>(
+    () => ThemeModeLocalDatasourceImpl(sl()),
   );
 
   // Repositories
@@ -38,8 +38,8 @@ Future<void> initServiceLocator() async {
   sl.registerLazySingleton<FavoritesRepository>(
     () => FavoritesRepositoryImpl(sl()),
   );
-  sl.registerLazySingleton<SettingsRepository>(
-    () => SettingsRepositoryImpl(sl()),
+  sl.registerLazySingleton<ThemeModeRepository>(
+    () => ThemeModeRepositoryImpl(sl()),
   );
 
   // Blocs
@@ -49,7 +49,7 @@ Future<void> initServiceLocator() async {
   sl.registerFactory<FavoritesBloc>(
     () => FavoritesBloc(sl()),
   );
-  sl.registerFactory<SettingsCubit>(
-    () => SettingsCubit(sl()),
+  sl.registerFactory<ThemeModeCubit>(
+    () => ThemeModeCubit(sl()),
   );
 }

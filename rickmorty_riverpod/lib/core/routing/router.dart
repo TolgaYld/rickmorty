@@ -6,7 +6,7 @@ import 'package:rickmorty_riverpod/presentation/character/character.page.dart';
 import 'package:rickmorty_riverpod/presentation/character/character_detail/character_detail.page.dart';
 import 'package:rickmorty_riverpod/presentation/favorites/favorites.page.dart';
 import 'package:rickmorty_riverpod/presentation/home.page.dart';
-import 'package:rickmorty_riverpod/presentation/settings/settings.page.dart';
+import 'package:rickmorty_riverpod/presentation/settings/theme_mode/settings.page.dart';
 
 enum RoutePath {
   character(path: '/character'),

@@ -1,11 +1,11 @@
 import 'package:core/rickmorty_core.dart';
 import 'package:flutter/material.dart';
-import 'package:rickmorty_bloc/features/settings/data/datasources/local/settings.local.datasource.dart';
-import 'package:rickmorty_bloc/features/settings/domain/repository/settings.repo.dart';
+import 'package:rickmorty_bloc/features/settings/theme_mode/data/datasources/local/theme_mode.local.datasource.dart';
+import 'package:rickmorty_bloc/features/settings/theme_mode/domain/repository/theme_mode.repo.dart';
 
-class SettingsRepositoryImpl implements SettingsRepository {
-  SettingsRepositoryImpl(this._datasource);
-  final SettingsDatasource _datasource;
+class ThemeModeRepositoryImpl implements ThemeModeRepository {
+  ThemeModeRepositoryImpl(this._datasource);
+  final ThemeModeLocalDatasource _datasource;
 
   @override
   ResultFuture<ThemeMode> getThemeMode() async {
