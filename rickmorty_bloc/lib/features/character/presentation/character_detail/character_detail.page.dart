@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/rickmorty_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -92,8 +93,8 @@ class _CharacterDetailPageState extends State<CharacterDetailPage> {
                             background: Stack(
                               fit: StackFit.expand,
                               children: [
-                                Image.network(
-                                  character.image,
+                                CachedNetworkImage(
+                                  imageUrl: character.image,
                                   fit: BoxFit.cover,
                                 ),
                                 const DecoratedBox(
@@ -201,11 +202,11 @@ class _StatusChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      padding: const .symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
         color: color.withValues(alpha: 0.2),
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: color.withValues(alpha: 0.5)),
+        borderRadius: .circular(20),
+        border: .all(color: color.withValues(alpha: 0.5)),
       ),
       child: Text(
         label,
@@ -233,9 +234,9 @@ class _InfoRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: Spacers.s),
+      padding: const .symmetric(vertical: Spacers.s),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: .start,
         children: [
           Icon(
             icon,
@@ -245,7 +246,7 @@ class _InfoRow extends StatelessWidget {
           HSpace.s(),
           Expanded(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: .start,
               children: [
                 Text(
                   label,
