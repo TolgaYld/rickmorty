@@ -4,8 +4,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rickmorty_riverpod/core/hooks/use_l10n.hook.dart';
 import 'package:rickmorty_riverpod/core/hooks/use_theme.hook.dart';
-import 'package:rickmorty_riverpod/presentation/settings/theme_mode/theme_mode.notifier.dart';
-import 'package:rickmorty_riverpod/presentation/settings/theme_mode/state/theme_mode.state.dart';
+import 'package:rickmorty_riverpod/presentation/settings/theme_mode/application/state/theme_mode.state.dart';
+import 'package:rickmorty_riverpod/presentation/settings/theme_mode/application/theme_mode.notifier.dart';
 
 class SettingsPage extends HookConsumerWidget {
   const SettingsPage({super.key});
@@ -14,11 +14,11 @@ class SettingsPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = useTheme();
     final l10n = useL10n();
-    final state = ref.watch(themeModeNotifierProvider);
+    final asyncState = ref.watch(themeModeNotifierProvider);
     final notifier = ref.read(themeModeNotifierProvider.notifier);
 
-    final currentThemeMode = switch (state) {
-      ThemeModeStateLoaded(themeMode: final mode) => mode,
+    final currentThemeMode = switch (asyncState) {
+      AsyncData(:final value) => value.themeMode,
       _ => ThemeMode.system,
     };
 
@@ -35,21 +35,15 @@ class SettingsPage extends HookConsumerWidget {
       appBar: AppBar(
         title: Text(l10n.settings),
       ),
-      body: switch (state) {
-        ThemeModeStateInitial() || ThemeModeStateLoading() => const Center(
-          child: CircularProgressIndicator(),
-        ),
-        ThemeModeStateError(message: final msg) => Center(
-          child: Text('Error: $msg'),
-        ),
-        ThemeModeStateLoaded() => ListView(
+      body: switch (asyncState) {
+        AsyncData(value: ThemeModeState(:final themeMode)) => ListView(
           children: [
             VSpace.m(),
             Center(
               child: RotationTransition(
                 turns: animationController,
                 child: Icon(
-                  switch (currentThemeMode) {
+                  switch (themeMode) {
                     ThemeMode.light => Icons.wb_sunny,
                     ThemeMode.dark => Icons.nightlight_round,
                     ThemeMode.system => Icons.brightness_auto,
@@ -68,7 +62,7 @@ class SettingsPage extends HookConsumerWidget {
               ),
             ),
             RadioGroup<ThemeMode>(
-              groupValue: currentThemeMode,
+              groupValue: themeMode,
               onChanged: (val) async {
                 if (val != null) {
                   await notifier.setTheme(val);
@@ -92,6 +86,12 @@ class SettingsPage extends HookConsumerWidget {
               ),
             ),
           ],
+        ),
+        AsyncError(:final error) => Center(
+          child: Text('Error: $error'),
+        ),
+        _ => const Center(
+          child: CircularProgressIndicator(),
         ),
       },
     );

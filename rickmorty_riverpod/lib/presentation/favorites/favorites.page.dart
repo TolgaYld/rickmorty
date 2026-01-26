@@ -4,8 +4,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rickmorty_riverpod/core/hooks/use_l10n.hook.dart';
 import 'package:rickmorty_riverpod/presentation/shared/molecules/character_card.dart';
-import 'package:rickmorty_riverpod/presentation/favorites/favorites.notifier.dart';
-import 'package:rickmorty_riverpod/presentation/favorites/state/favorites.state.dart';
+import 'package:rickmorty_riverpod/presentation/favorites/application/favorites.notifier.dart';
+import 'package:rickmorty_riverpod/presentation/favorites/application/state/favorites.state.dart';
 
 class FavoritesPage extends HookConsumerWidget {
   const FavoritesPage({super.key});
@@ -13,14 +13,16 @@ class FavoritesPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = useL10n();
-    final state = ref.watch(favoritesNotifierProvider);
+    final asyncState = ref.watch(favoritesNotifierProvider);
     final notifier = ref.read(favoritesNotifierProvider.notifier);
 
     final displayedItems = useState<List<Character>>([]);
     final initialized = useState<bool>(false);
 
     useEffect(() {
-      if (state case FavoritesStateLoaded(favorites: final currentFavorites)) {
+      if (asyncState.value case FavoritesState(
+        favorites: final currentFavorites,
+      )) {
         if (initialized.value == false) {
           displayedItems.value = currentFavorites;
           initialized.value = true;
@@ -38,21 +40,15 @@ class FavoritesPage extends HookConsumerWidget {
         }
       }
       return null;
-    }, [state]);
+    }, [asyncState]);
 
     return Scaffold(
       appBar: AppBar(
         title: Text(l10n.favorites),
       ),
-      body: switch (state) {
-        FavoritesStateInitial() || FavoritesStateLoading() => const Center(
-          child: CircularProgressIndicator(),
-        ),
-        FavoritesStateError(message: final msg) => Center(
-          child: Text('Error: $msg'),
-        ),
-        FavoritesStateLoaded(favorites: final favorites) =>
-          displayedItems.value.isEmpty && favorites.isEmpty
+      body: switch (asyncState) {
+        AsyncData(:final value) =>
+          displayedItems.value.isEmpty && value.favorites.isEmpty
               ? Center(child: Text(l10n.noFavorites))
               : GridView.builder(
                   padding: const EdgeInsets.all(Spacers.m),
@@ -65,7 +61,7 @@ class FavoritesPage extends HookConsumerWidget {
                   itemCount: displayedItems.value.length,
                   itemBuilder: (context, index) {
                     final item = displayedItems.value[index];
-                    final isStillFavorite = favorites.any(
+                    final isStillFavorite = value.favorites.any(
                       (f) => f.id == item.id,
                     );
 
@@ -82,6 +78,12 @@ class FavoritesPage extends HookConsumerWidget {
                     );
                   },
                 ),
+        AsyncError(:final error) => Center(
+          child: Text('Error: $error'),
+        ),
+        _ => const Center(
+          child: CircularProgressIndicator(),
+        ),
       },
     );
   }
