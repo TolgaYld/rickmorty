@@ -1,14 +1,15 @@
 import 'package:core/rickmorty_core.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rickmorty_riverpod/core/network/http_adapter.dart';
-import 'package:rickmorty_riverpod/services/datasources/character/remote/character.datasource.dart';
+import 'package:rickmorty_riverpod/services/datasources/character/remote/character.remote.datasource.dart';
 
-final characterDatasourceProvider = Provider.autoDispose<CharacterDatasource>(
-  (ref) => CharacterDatasourceImpl(ref.watch(httpAdapterProvider)),
-);
+final characterRemoteDatasourceProvider =
+    Provider.autoDispose<CharacterRemoteDatasource>(
+      (ref) => CharacterRemoteDatasourceImpl(ref.watch(httpAdapterProvider)),
+    );
 
-class CharacterDatasourceImpl implements CharacterDatasource {
-  CharacterDatasourceImpl(this._httpAdapter);
+class CharacterRemoteDatasourceImpl implements CharacterRemoteDatasource {
+  CharacterRemoteDatasourceImpl(this._httpAdapter);
 
   final HttpAdapter _httpAdapter;
   @override
@@ -20,7 +21,7 @@ class CharacterDatasourceImpl implements CharacterDatasource {
       );
       if (response.statusCode != 200) {
         throw ApiException(
-          message: response.data['error'] ?? 'Unknown Error',
+          message: response.data['error'] ?? 'Unkn own Error',
           statusCode: response.statusCode,
         );
       }

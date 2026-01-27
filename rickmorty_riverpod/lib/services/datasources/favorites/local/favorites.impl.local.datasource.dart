@@ -1,14 +1,16 @@
 import 'package:core/rickmorty_core.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rickmorty_riverpod/core/storage/local_storage_adapter.dart';
-import 'package:rickmorty_riverpod/services/datasources/favorites/local/favorites.datasource.dart';
+import 'package:rickmorty_riverpod/services/datasources/favorites/local/favorites.local.datasource.dart';
 
-final favoritesDatasourceProvider = Provider.autoDispose<FavoritesDatasource>(
-  (ref) => FavoritesDatasourceImpl(ref.watch(localStorageAdapterProvider)),
-);
+final favoritesDatasourceProvider =
+    Provider.autoDispose<FavoritesLocalDatasource>(
+      (ref) =>
+          FavoritesLocalDatasourceImpl(ref.watch(localStorageAdapterProvider)),
+    );
 
-class FavoritesDatasourceImpl implements FavoritesDatasource {
-  FavoritesDatasourceImpl(this._storage);
+class FavoritesLocalDatasourceImpl implements FavoritesLocalDatasource {
+  FavoritesLocalDatasourceImpl(this._storage);
 
   final LocalStorageAdapter _storage;
 

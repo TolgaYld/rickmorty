@@ -1,14 +1,15 @@
 import 'package:core/rickmorty_core.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rickmorty_riverpod/core/network/http_adapter.dart';
-import 'package:rickmorty_riverpod/services/datasources/episode/episode.datasource.dart';
+import 'package:rickmorty_riverpod/services/datasources/episode/remote/episode.remote.datasource.dart';
 
-final episodeDatasourceProvider = Provider.autoDispose<EpisodeDatasource>(
-  (ref) => EpisodeDatasourceImpl(ref.watch(httpAdapterProvider)),
-);
+final episodeRemoteDatasourceProvider =
+    Provider.autoDispose<EpisodeRemoteDatasource>(
+      (ref) => EpisodeRemoteDatasourceImpl(ref.watch(httpAdapterProvider)),
+    );
 
-class EpisodeDatasourceImpl implements EpisodeDatasource {
-  EpisodeDatasourceImpl(this._httpAdapter);
+class EpisodeRemoteDatasourceImpl implements EpisodeRemoteDatasource {
+  EpisodeRemoteDatasourceImpl(this._httpAdapter);
 
   final HttpAdapter _httpAdapter;
   @override

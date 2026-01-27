@@ -1,16 +1,16 @@
 import 'package:core/rickmorty_core.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:rickmorty_riverpod/services/datasources/episode/episode.datasource.dart';
-import 'package:rickmorty_riverpod/services/datasources/episode/episode.impl.datasource.dart';
+import 'package:rickmorty_riverpod/services/datasources/episode/remote/episode.remote.datasource.dart';
+import 'package:rickmorty_riverpod/services/datasources/episode/remote/episode.impl.remote.datasource.dart';
 import 'package:rickmorty_riverpod/services/repositories/episode/episode.repo.dart';
 
 final episodeRepositoryProvider = Provider.autoDispose<EpisodeRepository>(
-  (ref) => EpisodeRepositoryImpl(ref.watch(episodeDatasourceProvider)),
+  (ref) => EpisodeRepositoryImpl(ref.watch(episodeRemoteDatasourceProvider)),
 );
 
 class EpisodeRepositoryImpl implements EpisodeRepository {
   EpisodeRepositoryImpl(this._datasource);
-  final EpisodeDatasource _datasource;
+  final EpisodeRemoteDatasource _datasource;
   @override
   ResultFuture<Episode?> getEpisodeById(int id) async {
     try {

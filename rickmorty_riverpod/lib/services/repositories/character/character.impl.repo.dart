@@ -1,16 +1,17 @@
 import 'package:core/rickmorty_core.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:rickmorty_riverpod/services/datasources/character/remote/character.datasource.dart';
-import 'package:rickmorty_riverpod/services/datasources/character/remote/character.impl.datasource.dart';
+import 'package:rickmorty_riverpod/services/datasources/character/remote/character.remote.datasource.dart';
+import 'package:rickmorty_riverpod/services/datasources/character/remote/character.impl.remote.datasource.dart';
 import 'package:rickmorty_riverpod/services/repositories/character/character.repo.dart';
 
 final characterRepositoryProvider = Provider.autoDispose<CharacterRepository>(
-  (ref) => CharacterRepositoryImpl(ref.watch(characterDatasourceProvider)),
+  (ref) =>
+      CharacterRepositoryImpl(ref.watch(characterRemoteDatasourceProvider)),
 );
 
 class CharacterRepositoryImpl implements CharacterRepository {
   CharacterRepositoryImpl(this._datasource);
-  final CharacterDatasource _datasource;
+  final CharacterRemoteDatasource _datasource;
   @override
   ResultFuture<Character?> getCharacterById(int id) async {
     try {

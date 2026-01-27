@@ -1,7 +1,7 @@
 import 'package:core/rickmorty_core.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:rickmorty_riverpod/services/datasources/favorites/local/favorites.datasource.dart';
-import 'package:rickmorty_riverpod/services/datasources/favorites/local/favorites.impl.datasource.dart';
+import 'package:rickmorty_riverpod/services/datasources/favorites/local/favorites.local.datasource.dart';
+import 'package:rickmorty_riverpod/services/datasources/favorites/local/favorites.impl.local.datasource.dart';
 import 'package:rickmorty_riverpod/services/repositories/favorites/favorites.repo.dart';
 
 final favoritesRepositoryProvider = Provider.autoDispose<FavoritesRepository>(
@@ -10,7 +10,7 @@ final favoritesRepositoryProvider = Provider.autoDispose<FavoritesRepository>(
 
 class FavoritesRepositoryImpl implements FavoritesRepository {
   FavoritesRepositoryImpl(this._datasource);
-  final FavoritesDatasource _datasource;
+  final FavoritesLocalDatasource _datasource;
 
   @override
   ResultFuture<List<Character>> getFavorites() async {
