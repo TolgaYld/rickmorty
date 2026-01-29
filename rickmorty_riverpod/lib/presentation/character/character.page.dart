@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rickmorty_riverpod/presentation/character/application/character.notifier.dart';
+import 'package:rickmorty_riverpod/presentation/character/application/state/character.state.dart';
 
 import 'package:rickmorty_riverpod/presentation/shared/molecules/character_card.dart';
 import 'package:rickmorty_riverpod/presentation/favorites/application/state/favorites.state.dart';
@@ -39,35 +40,38 @@ class CharacterPage extends HookConsumerWidget {
         centerTitle: false,
       ),
       body: switch (charactersStateAsync) {
-        AsyncData(:final value) => GridView.builder(
-          key: const PageStorageKey('characters_grid'),
-          controller: scrollController,
-          padding: const EdgeInsets.all(Spacers.m),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 0.7,
-            mainAxisSpacing: Spacers.m,
-            crossAxisSpacing: Spacers.m,
-          ),
-          itemCount: value.characters.length + (value.isFetchingMore ? 1 : 0),
-          itemBuilder: (context, index) {
-            if (index == value.characters.length) {
-              return const Center(child: CircularProgressIndicator());
-            }
+        AsyncData(
+          value: CharacterState(:final characters, :final isFetchingMore),
+        ) =>
+          GridView.builder(
+            key: const PageStorageKey('characters_grid'),
+            controller: scrollController,
+            padding: const EdgeInsets.all(Spacers.m),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 0.7,
+              mainAxisSpacing: Spacers.m,
+              crossAxisSpacing: Spacers.m,
+            ),
+            itemCount: characters.length + (isFetchingMore ? 1 : 0),
+            itemBuilder: (context, index) {
+              if (index == characters.length) {
+                return const Center(child: CircularProgressIndicator());
+              }
 
-            final item = value.characters[index];
-            return CharacterCard(
-              character: item,
-              isFavorite: switch (favoritesAsyncState) {
-                AsyncData(value: FavoritesState(:final favorites)) =>
-                  favorites.contains(item),
-                _ => false,
-              },
-              onToggleFavorite: () async =>
-                  await favoritesNotifier.toggleFavorite(item),
-            );
-          },
-        ),
+              final item = characters[index];
+              return CharacterCard(
+                character: item,
+                isFavorite: switch (favoritesAsyncState) {
+                  AsyncData(value: FavoritesState(:final favorites)) =>
+                    favorites.contains(item),
+                  _ => false,
+                },
+                onToggleFavorite: () async =>
+                    await favoritesNotifier.toggleFavorite(item),
+              );
+            },
+          ),
         AsyncError(:final error) => Center(
           child: Text('Error: $error'),
         ),

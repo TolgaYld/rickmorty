@@ -10,12 +10,11 @@ final characterProvider = FutureProvider.autoDispose<List<Character>>((
   return state.characters;
 });
 
-final characterByIdProvider = FutureProvider.autoDispose
-    .family<Character?, int>((ref, id) async {
-      final repository = ref.watch(characterRepositoryProvider);
-      final result = await repository.getCharacterById(id);
-      return switch (result) {
-        Left(:final failure) => throw failure,
-        Right(:final value) => value,
-      };
-    });
+final characterByIdProvider = FutureProvider.autoDispose.family<Character?, int>((ref, id) async {
+  final repository = ref.watch(characterRepositoryProvider);
+  final result = await repository.getCharacterById(id);
+  return switch (result) {
+    Left(:final failure) => throw failure,
+    Right(:final value) => value,
+  };
+});

@@ -5,10 +5,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rickmorty_riverpod/presentation/character/application/state/character.state.dart';
 import 'package:rickmorty_riverpod/services/repositories/character/character.impl.repo.dart';
 
-final characterNotifierProvider =
-    AsyncNotifierProvider<CharacterNotifier, CharacterState>(
-      CharacterNotifier.new,
-    );
+final characterNotifierProvider = AsyncNotifierProvider<CharacterNotifier, CharacterState>(
+  CharacterNotifier.new,
+);
 
 class CharacterNotifier extends AsyncNotifier<CharacterState> {
   @override
@@ -64,9 +63,7 @@ class CharacterNotifier extends AsyncNotifier<CharacterState> {
 
       state = switch (result) {
         Left(:final failure) => AsyncError(failure.message, StackTrace.current),
-        Right(:final value) => AsyncData(
-          copyWith(character: value),
-        ),
+        Right(:final value) => AsyncData(copyWith(character: value)),
       };
     }
   }
