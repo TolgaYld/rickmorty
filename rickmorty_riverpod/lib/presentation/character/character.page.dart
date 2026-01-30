@@ -75,7 +75,7 @@ class CharacterPage extends HookConsumerWidget {
         AsyncError(:final error) => Center(
           child: Text('Error: $error'),
         ),
-        _ => const Center(
+        AsyncLoading() => const Center(
           child: CircularProgressIndicator(),
         ),
       },
